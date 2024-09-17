@@ -1,0 +1,32 @@
+<div class="overflow-x-auto mt-5">
+    <div class="mb-5 ml-3">
+        <a href="/category/new" class="btn btn-primary">New Category</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Creation date</th>
+                <th>Updated at</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (category of categories; track $index) {
+                <tr class="hover">
+                    <th>{{ $index+1 }}</th>
+                    <td>{{ category.name }}</td>
+                    <td>{{ category.description }}</td>
+                    <td>{{ category.created_at|date: 'M/d/yy, h:mm a' }}</td>
+                    <td>{{ category.updated_at|date: 'M/d/yy, h:mm a' }}</td>
+                    <td>
+                        <a href="/category/{{ category.id }}" class="btn btn-primary">Edit</a>
+                        <button class="btn btn-error" (click)="onDelete(category.id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,32 @@
+services:
+  djangoapp:
+    build: .
+    ports:
+      - "16001:16001"
+    volumes:
+      - ./techstore:/app
+    depends_on:
+      - db
+    networks:
+      - techstore_network
+  
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: techstore
+      MYSQL_USER: techstore_live
+      MYSQL_PASSWORD: holaMundo1!
+      MYSQL_ROOT_PASSWORD: holaMundo1!
+    ports:
+      - "3310:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - techstore_network
+
+volumes:
+  db_data:
+
+networks:
+  techstore_network:
+    driver: bridge

@@ -1,0 +1,45 @@
+<div class="overflow-x-auto mt-5">
+    <div class="mb-5 ml-3">
+        <a href="/product/new" class="btn btn-primary">New Product</a>
+    </div>
+    <table class="table">
+        <!-- head -->
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Creation date</th>
+                <th>Updated at</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (product of products; track $index) {
+                <tr class="hover">
+                    <th>{{ $index+1 }}</th>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    @if(productCategory[product.id] && productCategory[product.id].length > 0) {
+                        @for(category of productCategory[product.id]; track $index){
+                            <td>{{ category.name }}</td>
+                        }
+                    } @else {
+                        <td></td>
+                    }
+                    <td>$ {{ product.price }}</td>
+                    <td>{{ product.quantity }}</td>
+                    <td>{{ product.created_at|date:'M/d/yy, h:mm a' }}</td>
+                    <td>{{ product.updated_at|date: 'M/d/yy, h:mm a' }}</td>
+                    <td>
+                        <a href="/product/{{ product.id }}" class="btn btn-primary">Edit</a>
+                        <button class="btn btn-error" (click)="onDelete(product.id)">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,16 @@
+# files or folders to ignore for Angular project
+.angular
+.vscode
+node_modules
+dist
+package-lock.json
+env
+
+
+# files or folders to ignore for DJango project
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3

@@ -1,0 +1,52 @@
+<div class="border shadow-default m-5 rounded-lg">
+    <form [formGroup]="form" *ngIf="form" (ngSubmit)="onSubmit()">
+        <div class="p-11">
+            <div class="mb-4.5">
+                <label class="mb-2.5 block text-black dark:text-white required" for="name">
+                    Name
+                </label>
+                <input type="text" placeholder="Name" [formControl]="$any(nameControl)" [value]="name"
+                    class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default dark:disabled:bg-form-input dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary dark:text-white disabled:bg-gray-3" />
+            </div>
+
+            <div class="mb-4.5 mt-3">
+                <label class="mb-2.5 block text-black dark:text-white required" for="description">
+                    Description
+                </label>
+                <textarea placeholder="Description" [formControl]="$any(descriptionControl)" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default dark:disabled:bg-form-input dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary dark:text-white disabled:bg-gray-3" [value]="description"></textarea>
+            </div>
+
+            <div class="mb-4.5 mt-3">
+                <label class="mb-2.5 block text-black dark:text-white required" for="price">
+                    Price
+                </label>
+                <input placeholder="Price" [formControl]="$any(priceControl)" type="number" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default dark:disabled:bg-form-input dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary dark:text-white disabled:bg-gray-3" [value]="price">
+            </div>
+
+            <div class="mb-4.5 mt-3">
+                <label class="mb-2.5 block text-black dark:text-white required" for="quantity">
+                    Quantity
+                </label>
+                <input placeholder="Quantity" [formControl]="$any(quantityControl)" type="number" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default dark:disabled:bg-form-input dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary dark:text-white disabled:bg-gray-3" [value]="quantity">
+            </div>
+
+            <div class="mb-4.5 mt-3">
+                <label class="mb-2.5 block text-black dark:text-white required" for="category">
+                    Category
+                </label>
+                <select [formControl]="$any(categoryControl)" class="w-full rounded border-[1.5px] border-stroke bg-transparent py-3 px-5 font-medium outline-none transition focus:border-primary active:border-primary disabled:cursor-default dark:disabled:bg-form-input dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary disabled:bg-gray-3" (change)="onSelectionChange($event)">
+                    <option value="" disabled selected>Select A Category</option>
+                    <option *ngFor="let category of categories" [value]="category.id">
+                        {{ category.name }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="required mt-5">Required fields</div>
+            <button type="submit" [disabled]="!form.valid"
+                class="flex w-full justify-center rounded bg-primary p-3 mt-5 font-medium text-white">
+                Save
+            </button>
+        </div>
+    </form>
+</div>
